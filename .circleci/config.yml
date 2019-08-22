@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-        - image: kaikuehne/pyenv:latest
+        - image: kaikuehne/pyenv:alpine3.10
 
     working_directory: /tmp/app
 
