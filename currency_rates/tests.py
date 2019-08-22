@@ -186,5 +186,5 @@ class LoadRatesTest(TestCase):
         self.assertRaises(Exception, self.command.handle)
         try:
             self.command.handle()
-        except Exception, e:
+        except Exception as e:
             self.assertIn("OPENEXCHANGERATES_APP_ID", str(e))
