@@ -1,6 +1,9 @@
+from __future__ import unicode_literals
+
 import datetime
 from django.db import models
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import gettext_lazy as _
 
 
@@ -19,6 +22,7 @@ def default_currency():
     return None
 
 
+@python_2_unicode_compatible
 class Currency(models.Model):
     code = models.CharField(_('Code'), max_length=3, primary_key=True)
     name = models.CharField(_('Name'), max_length=50)
@@ -31,7 +35,7 @@ class Currency(models.Model):
         verbose_name_plural = _('Currencies')
         ordering = ('code',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.code
 
     def save(self, **kwargs):
@@ -67,6 +71,7 @@ class Currency(models.Model):
         return result
 
 
+@python_2_unicode_compatible
 class ExchangeRate(models.Model):
     currency = models.ForeignKey(Currency, related_name='rates', on_delete=models.CASCADE)
     date = models.DateField(_('Date'), default=datetime.date.today)
@@ -79,5 +84,5 @@ class ExchangeRate(models.Model):
         unique_together = (('currency', 'date'),)
         ordering = ('-date', 'currency__code')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s %s" % (self.currency, self.rate)
