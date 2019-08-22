@@ -1,5 +1,5 @@
 import json
-import urllib2
+from urllib.request import urlopen
 import datetime
 from decimal import Decimal
 from django.core.management.base import BaseCommand
@@ -21,7 +21,7 @@ class Command(BaseCommand):
         base_currency = getattr(settings, "CURRENCY_RATES_DEFAULT_CODE", 'EUR')
 
         url = CURRENT_RATES_URL + "?app_id=" + app_id
-        f = urllib2.urlopen(url)
+        f = urlopen(url)
         data = json.loads(f.read())
 
         # USD is the default in OpenExchangeRates, so we don't need conversion
