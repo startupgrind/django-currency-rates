@@ -112,7 +112,7 @@ class LoadCurrenciesTest(TestCase):
         with mock.patch('urllib2.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
-            self.command.handle_noargs()
+            self.command.handle()
 
         usd = Currency.objects.get(code='USD')
         self.assertEqual(usd.name, u"US Dollar")
@@ -135,7 +135,7 @@ class LoadRatesTest(TestCase):
         with mock.patch('urllib2.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
-            self.command.handle_noargs()
+            self.command.handle()
 
         usd_rate = ExchangeRate.objects.get(currency__code='USD')
         self.assertEqual(usd_rate.rate, Decimal("1.25"))
@@ -155,7 +155,7 @@ class LoadRatesTest(TestCase):
         with mock.patch('urllib2.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
-            self.command.handle_noargs()
+            self.command.handle()
 
         usd_rate = ExchangeRate.objects.get(currency__code='USD')
         self.assertEqual(usd_rate.rate, Decimal("1"))
@@ -173,7 +173,7 @@ class LoadRatesTest(TestCase):
         with mock.patch('urllib2.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
-            self.command.handle_noargs()
+            self.command.handle()
 
         usd_rate = ExchangeRate.objects.get(currency__code='USD')
         self.assertEqual(usd_rate.rate, Decimal("1.25"))
@@ -183,8 +183,8 @@ class LoadRatesTest(TestCase):
     @override_settings(OPENEXCHANGERATES_APP_ID=None)
     def test_load_rates_no_app_id_exception(self):
 
-        self.assertRaises(Exception, self.command.handle_noargs)
+        self.assertRaises(Exception, self.command.handle)
         try:
-            self.command.handle_noargs()
+            self.command.handle()
         except Exception, e:
             self.assertIn("OPENEXCHANGERATES_APP_ID", str(e))
