@@ -14,5 +14,5 @@ class Command(BaseCommand):
             f = urlopen(CURRENCIES_URL)
             currencies = json.loads(f.read())
 
-            for code, name in currencies.iteritems():
+            for code, name in currencies.items():
                 Currency.objects.get_or_create(code=code, defaults={'name': name})
