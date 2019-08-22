@@ -38,8 +38,8 @@ class CurrencyModelTest(TestCase):
                             is_default=True)
         usd = Currency.objects.create(code='USD', name="Dollar",
                             is_default=True)
-        # reread eur, to get the chages
-        eur = Currency.objects.get(pk=eur.id)
+        # reread eur, to get the changes
+        eur.refresh_from_db()
         self.assertFalse(eur.is_default)
         self.assertTrue(usd.is_default)
 
