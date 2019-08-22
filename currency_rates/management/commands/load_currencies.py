@@ -1,15 +1,15 @@
 import json
 import urllib2
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from currency_rates.models import Currency
 
 CURRENCIES_URL = "http://openexchangerates.org/currencies.json"
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
         help = "Load currencies from %s" % CURRENCIES_URL
 
-        def handle_noargs(self, **options):
+        def handle(self, **options):
 
             f = urllib2.urlopen(CURRENCIES_URL)
             currencies = json.loads(f.read())

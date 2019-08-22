@@ -2,17 +2,17 @@ import json
 import urllib2
 import datetime
 from decimal import Decimal
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 from django.conf import settings
 from currency_rates.models import Currency, ExchangeRate
 
 CURRENT_RATES_URL = "http://openexchangerates.org/latest.json"
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = "Get the current rates from %s" % CURRENT_RATES_URL
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
 
         app_id = getattr(settings, "OPENEXCHANGERATES_APP_ID", None)
         if not app_id:
