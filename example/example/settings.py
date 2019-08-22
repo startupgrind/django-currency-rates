@@ -122,8 +122,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-
-    'south',
     'currency_rates'
 )
 
@@ -157,4 +155,4 @@ LOGGING = {
 }
 
 import os
-OPENEXCHANGERATES_APP_ID = os.environ['OPENEXCHANGERATES_APP_ID']
+OPENEXCHANGERATES_APP_ID = os.environ.get('OPENEXCHANGERATES_APP_ID','')
