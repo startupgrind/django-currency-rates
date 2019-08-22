@@ -3,13 +3,13 @@ jobs:
   build:
     docker:
         - image: kaikuehne/pyenv:alpine3.10
-
+          environment:
+            PATH: "/root/pyenv/bin:/root/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            PYENV_ROOT: "/root/pyenv"
     working_directory: /tmp/app
-
     steps:
         - checkout
         - setup_remote_docker
-
         - restore_cache:
             keys:
                 - v1-project-{{ arch }}-{{ checksum "tox.ini" }}
@@ -25,13 +25,10 @@ jobs:
                 pyenv local  2.7.16 3.7.4
                 pip install --upgrade pip
                 pip install tox tox-pyenv
-                tox
-            environment:
-              PATH: "/root/pyenv/bin:/root/pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-              PYENV_ROOT: "/root/pyenv"
             shell: /bin/bash
-
         - save_cache:
               key: v1-project-{{ arch }}-{{ checksum "tox.ini" }}
               paths:
                   - /root/pyenv
+        - run:
+            command: tox
