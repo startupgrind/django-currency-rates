@@ -109,7 +109,7 @@ class LoadCurrenciesTest(TestCase):
 
     def test_load_currencies(self):
 
-        with mock.patch('urllib2.urlopen') as mock_urlopen:
+        with mock.patch('six.moves.urllib.request.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
             self.command.handle()
@@ -132,7 +132,7 @@ class LoadRatesTest(TestCase):
         Currency.objects.create(code="USD")
         Currency.objects.create(code="EUR")
 
-        with mock.patch('urllib2.urlopen') as mock_urlopen:
+        with mock.patch('six.moves.urllib.request.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
             self.command.handle()
@@ -152,7 +152,7 @@ class LoadRatesTest(TestCase):
         Currency.objects.create(code="USD")
         Currency.objects.create(code="EUR")
 
-        with mock.patch('urllib2.urlopen') as mock_urlopen:
+        with mock.patch('six.moves.urllib.request.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
             self.command.handle()
@@ -170,7 +170,7 @@ class LoadRatesTest(TestCase):
         # create currency
         Currency.objects.create(code="USD")
 
-        with mock.patch('urllib2.urlopen') as mock_urlopen:
+        with mock.patch('six.moves.urllib.request.urlopen') as mock_urlopen:
             attrs = {'read.return_value': json.dumps(self.data)}
             mock_urlopen.return_value = mock.MagicMock(**attrs)
             self.command.handle()
