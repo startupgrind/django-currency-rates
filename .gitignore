@@ -192,3 +192,6 @@ dmypy.json
 # Pyre type checker
 
 # End of https://www.gitignore.io/api/python,django
+
+## testing project's db
+example/test.db
