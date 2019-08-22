@@ -26,5 +26,8 @@ setup(
                  'Framework :: Django',
                  'Intended Audience :: Developers',
                  'License :: OSI Approved :: GNU General Public License (GPL)',
-                 'Topic :: Internet :: WWW/HTTP :: Dynamic Content']
+                 'Topic :: Internet :: WWW/HTTP :: Dynamic Content'],
+    install_requires=[
+          'six',
+    ],
 )
