@@ -14,17 +14,24 @@ setup(
     author=__author__,
     author_email=__email__,
     license='GPL',
-    packages=['currency_rates',
-                'currency_rates.management',
-                'currency_rates.management.commands'],
+    packages=[
+        'currency_rates',
+        'currency_rates.management',
+        'currency_rates.management.commands'
+    ],
     package_data={'openonmobile': ['fixtures/*.json']},
     data_files=[('', ['README.rst'])],
     description='Currencies & echange rates for django projects',
     long_description=long_description,
-    classifiers=['Development Status :: 5 - Production/Stable',
-                 'Environment :: Web Environment',
-                 'Framework :: Django',
-                 'Intended Audience :: Developers',
-                 'License :: OSI Approved :: GNU General Public License (GPL)',
-                 'Topic :: Internet :: WWW/HTTP :: Dynamic Content']
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content'
+    ],
+    install_requires=[
+          'six',
+    ],
 )
