@@ -31,7 +31,4 @@ setup(
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content'
     ],
-    install_requires=[
-          'six',
-    ],
 )

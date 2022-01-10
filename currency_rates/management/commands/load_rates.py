@@ -1,5 +1,5 @@
 import json
-from six.moves.urllib.request import urlopen
+from urllib.request import urlopen
 import datetime
 from decimal import Decimal
 from django.core.management.base import BaseCommand
