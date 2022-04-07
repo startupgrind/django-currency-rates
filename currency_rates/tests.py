@@ -4,7 +4,6 @@ import time
 import json
 from django.test import TestCase
 from django.test.utils import override_settings
-from six import text_type
 
 from currency_rates.models import Currency, ExchangeRate, default_currency
 from currency_rates.management.commands import load_currencies, load_rates
@@ -16,7 +15,7 @@ class CurrencyModelTest(TestCase):
 
         currency = Currency(code='EUR', name="Euro")
 
-        self.assertEqual(text_type(currency), 'EUR')
+        self.assertEqual(str(currency), 'EUR')
 
     def test_no_rates(self):
 
@@ -78,7 +77,7 @@ class RateModelTest(TestCase):
         rate = ExchangeRate.objects.create(currency=currency,
                                      rate=Decimal("2.00"))
 
-        self.assertEqual(text_type(rate), 'EUR 2.00')
+        self.assertEqual(str(rate), 'EUR 2.00')
 
 
 class DefaultCurrencyTest(TestCase):

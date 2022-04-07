@@ -1,3 +1,2 @@
 coverage
 mock==0.8.0
-six==1.12.0

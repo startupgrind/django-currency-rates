@@ -1,5 +1,5 @@
 import json
-from six.moves.urllib.request import urlopen
+from urllib.request import urlopen
 from django.core.management.base import BaseCommand
 from currency_rates.models import Currency
 
